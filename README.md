@@ -53,13 +53,13 @@ berekening met de gegevens in de database.
 
 - [ ] Een Python script
 - [x] Een ERD
-- [ ] Een Relationeel Model
+- [X] Een Relationeel Model
 - [x] Een SQL script om de database te creëren
 
 ## Checklist
 
 - [x] Maak een ERD in Lucidchart.
-- [ ] Maak van het ERD een Relationeel Model in MySQL Workbench.
+- [X] Maak van het ERD een Relationeel Model in MySQL Workbench.
 - [x] Maak van het Relationeel Model een fysieke database met de optie Forward Engineering.
 - [ ] Vul de database met de gegevens uit het voorbeeldcontract.
 - [ ] Schrijf een Python programma met daarin het gevraagde menu en functies.
