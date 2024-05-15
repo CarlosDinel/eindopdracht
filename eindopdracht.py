@@ -87,14 +87,21 @@ def toevoegen_klant():
     ############################
     # Voeg klant toe aan de db #
     ############################
+    # voeg eerst adres toe aan Adres tabel wegens ai van adresID welke een FK is in klant tabel.
+    insert_adres_query = "INSERT INTO Adres (straat, postcode, huisnummer, adres, plaats, catagorie) VALUES (%s, %s, %s, %s, %s, %s)"
+    values = (straat, postcode,huisnummer, adres, plaats, catgorie) 
+    mycursor.execute(query, values)
+    mydb.commit()
 
-    # Definieer de SQL-query's met behulp van f-strings
-    # insert_klant_query = f"INSERT INTO klanten (klantID, voornaam, tussenvoegsel, achternaam, bankrekeningnummer, k_adresID) VALUES ('{klantnummer}', '{voornaam}', '{tussenvoegsel}', '{achternaam}, {bankrekeningnummer}, {klantnummer}');"
-    insert_klant_query = f"INSERT INTO klanten (klantID, voornaam, tussenvoegsel, achternaam, bankrekeningnummer, k_adresID) VALUES ('1', 'Jan', '', 'Jantjes', 'NL66INGB012345678', '1');"
-    
-    # Definieer de SQL-query's met behulp van f-strings
-    # insert_adres_query = f"INSERT INTO Adressen (adresID, straat, huisnummer, postcode, plaats, categorie) VALUES ('{klantnummer}', '{straat}', '{huisnummer}', '{postcode}', '{plaats}', 'Klant')"
+    # haal adresID terug om als FK toe te voegen aan klant query 
+    adresID = mycursor.lastrowid
 
+    # maak query om klantgegevens toe te voegen aan Klant tabel 
+    query = "INSERT INTO Klant (voornaam, tussenvoegsel, achternaam, bankrekeningnummer, k_adresID) VALUES (%s, %s, %s, %s, %s)"
+    values = (voornaam, tussenvoegsel, achternaam, bankrekeningnummer, adresID) 
+    mycursor.execute(query, values)
+    mydb.commit()
+   
     # Maak een cursor object om SQL-query's uit te voeren
     mycursor = mydb.cursor()
 
